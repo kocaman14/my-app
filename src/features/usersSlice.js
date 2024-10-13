@@ -20,8 +20,7 @@ reducers:{
     if (state.persons[name] !== undefined) {
       state.persons[name] = status;
     }
-
-
+    
   }
 }
 

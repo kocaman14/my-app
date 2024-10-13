@@ -12,29 +12,28 @@ export const Userpage  = () => {
   useEffect(() => {
     const randomNumber = Math.floor(Math.random() * Object.keys(persons).length);
     const randomUser = Object.keys(persons)[randomNumber];
-    console.log(randomUser)
+    const mood=Object.values(persons)[randomNumber];
+    console.log(mood)
     const timer = setTimeout(() => {
-      dispatch(randomUsers({ name: randomUser, status: false }));
+      if(mood)dispatch(randomUsers({ name: randomUser, status: false }));
+      if(!mood)dispatch(randomUsers({ name: randomUser, status: true }))
+      
     }, 2000);
-    setTimeout(() => {
-      dispatch(randomUsers({ name: randomUser, status: true }));
-    }, 1000)
-
+    
+    
     return () => clearTimeout(timer);
   }, [persons,dispatch]);
   console.log(persons)
   return (
-   <>
-  <ul>
-
-{Object.entries(persons).map(([key, value])=>(
-<li key={key}>{key}:{value?"🟢":"🔴"}</li>
-))}
-
-   
-   
-   
-  </ul>
-   </>
-  )
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <ul className="list-none p-0 m-0 bg-white shadow-lg rounded-lg">
+        {Object.entries(persons).map(([key, value]) => (
+          <li key={key} className="flex justify-between items-center p-4 border-b border-gray-300 last:border-b-0">
+            <span>{key}</span>
+            <span className="text-xl">{value ? "🟢" : "🔴"}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
