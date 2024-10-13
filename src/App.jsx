@@ -1,4 +1,4 @@
-import { Userpage } from "./components/userspage"
+import { Userpage } from "./components/usersPage"
 
 function App() {
 
